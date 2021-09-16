@@ -9,9 +9,15 @@ class Bookmark
         end
         
         result = connection.exec('SELECT * FROM bookmarks;')
-        result.map { |url| bookmark['url'] }
-        result.map { |title| bookmark['title'] }
-        "<a href='#{url}'>'#{title}'</a>"
+        url = result.map { |bookmark| bookmark['url'] }
+        title = result.map { |bookmark| bookmark['title'] }
+        counter = 0
+        temp = ""
+        url.each do |n|
+            temp += "<a href='#{n}'>'#{title[counter]}'</a><br>"
+            counter += 1
+        end
+        temp
     end
 
     def self.add(url,title)
