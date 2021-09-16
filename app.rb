@@ -24,7 +24,8 @@ class BookmarkManager < Sinatra::Base
 
   post '/bookmark_added' do
     url = params['url']
-    Bookmark.add(url)
+    title = params['title']
+    Bookmark.add(url,title)
     redirect '/'
   end
 
