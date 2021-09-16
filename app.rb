@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
 require './lib/bookmark'
+require 'pg'
 
 class BookmarkManager < Sinatra::Base
   configure :development do
@@ -8,15 +9,14 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/' do
-    erb :index
+      erb :index
   end
 
   get '/bookmarks' do
+    p ENV
     @bookmarks = Bookmark.all
-    erb :bookmarks
+    erb :index
   end
-
-
 
   run! if app_file == $0
 end

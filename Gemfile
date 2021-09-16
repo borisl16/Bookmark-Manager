@@ -1,11 +1,10 @@
-# frozen_string_literal: true
+# Inside Gemfile
 
 source "https://rubygems.org"
 
-git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
-
-gem 'sinatra'
-gem 'sinatra-contrib'
-gem 'rspec'
-gem 'capybara'
 gem 'pg'
+gem 'sinatra'
+gem 'sinatra/reloader'
+
+gem 'capybara', group: :test
+gem 'rspec', group: :test
