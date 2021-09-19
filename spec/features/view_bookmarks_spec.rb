@@ -1,19 +1,16 @@
 # in spec/features/viewing_bookmarks_spec.rb
-require 'pg'
-
 
 feature 'Viewing bookmarks' do
-  scenario 'A user can see bookmarks' do
-    connection = PG.connect(dbname: 'bookmark_manager_test')
+    scenario 'visiting the index page' do
+      visit('/')
+      expect(page).to have_content "Boris's Bookmark Manager"
+    end
 
-    Bookmark.add('www.ruby.com')
-    Bookmark.add('www.google.com')
-    Bookmark.add('www.makers.com')
+    scenario 'See a list of bookmarks' do
+      visit('/bookmarks')
 
-    visit('/bookmarks')
-
-    expect(page).to have_content "www.ruby.com"
-    expect(page).to have_content "www.google.com"
-    expect(page).to have_content "www.makers.com"
-  end
+      expect(page).to have_content "https://www.ruby.com"
+      expect(page).to have_content "https://www.google.com"
+      expect(page).to have_content "https://www.gmail.com"
+    end
 end
